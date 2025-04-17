@@ -3,15 +3,27 @@ import data from '../dataset/MOCK_DATA.json'
 
 export function SearchBox(){
     const [query, setQuery] = useState('')
-    const [showSearchResults, searchResults] = useState(true);
+    const [showSearchResults, setShowsearchResults] = useState(false);
     const searchBoxRef = useRef();
     const inputRef = useRef();
+    const [showCloseSearch, setShowCloseSearch] = useState(false)
+    const closeSearchRef = useRef();
+
     useEffect(()=>{
-        function handleClickOutside(){
-            if(inputRef.current && )
+        function handleClickOutside(event){
+            if(inputRef.current && !inputRef.current.contains(event.target)){
+                setShowsearchResults(false);
+            }
         }
         document.addEventListener('mousedown', handleClickOutside)
-    }, [])
+
+        //close search
+
+        if(showSearchResults){
+            setShowCloseSearch(true)
+        }
+
+    }, [showSearchResults, showCloseSearch])
     return(
         <div className='flex justify-center items-center flex-col'>
             <div className="relative w-150">
@@ -38,10 +50,27 @@ export function SearchBox(){
                         type="text"
                         value={query}
                         placeholder='Find it faster with a search'
-                        onChange={(e)=>setQuery(e.target.value)}
+                        onChange={(e)=>{
+                            setQuery(e.target.value)
+                            setShowsearchResults(true)
+                        }}
                         className='bg-gray-100 outline-none w-full'
                         ref={inputRef}
                     />
+                    {showCloseSearch &&
+                        <button
+                            onClick={()=>{
+                                setShowsearchResults(false);
+                                setShowCloseSearch(false)
+                            }}
+                        >
+                            <svg width="20" height="20" viewBox="0 0 100 100"  xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="50" cy="50" r="50" fill="#596280" />
+                                <line x1="30" y1="30" x2="70" y2="70" stroke="white" strokeWidth="8" strokeLinecap="round"/>
+                                <line x1="70" y1="30" x2="30" y2="70" stroke="white" strokeWidth="8" strokeLinecap="round"/>
+                            </svg>
+                        </button>
+                    }
                 </div>
                 {showSearchResults && query && (
                     <div className="absolute top-full left-0 mt-1 w-full z-10 bg-white rounded-xl shadow">
