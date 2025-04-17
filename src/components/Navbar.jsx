@@ -28,13 +28,13 @@ export function Navbar() {
     }, [showStudyTools, showSubjects])
     return (
         <div className="bg-white h-16 ">
-            <div className='flex mx-4! items-center grid-cols-3 justify-between'>
-                <div className='flex my-4 bg-red-400 w-90 items-center justify-between text-sm font-medium'>
+            <div className='flex mx-4 items-center justify-between'>
+                <div className='flex my-4 w-90 items-center justify-between text-sm font-medium'>
                     <div>
                         <img src={quizletLogo} alt="Quizlet Logo" className="h-8" />
                     </div>
                     <div
-                        className='flex bg-green-600 items-center w-23 justify-between relative cursor-pointer'
+                        className='flex items-center w-23 justify-between relative cursor-pointer'
                         onClick={() => setShowStudyTools((prev) => !prev)}
                         ref={studyToolsRef}
                     >
@@ -48,7 +48,7 @@ export function Navbar() {
                         {showStudyTools && (<Dropdown/>)}
                     </div>
                     <div
-                        className='flex bg-green-200 items-center w-20 justify-between relative cursor-pointer'
+                        className='flex items-center w-20 justify-between relative cursor-pointer'
                         onClick={() => setShowSubjects((prev) => !prev)}
                         ref={showSubjectsRef}
                     >
@@ -63,10 +63,16 @@ export function Navbar() {
                     </div>
                 </div>
                 <div className='flex'>
-                    <SearchBox/>
+                    <SearchBox />
                 </div>
-                <div className='bg-blue-400'>
-                    hi
+                <div className='flex justify-between w-45 items-center'>
+                    <div className='flex justify-center items-center text-blue-700 font-semibold'> 
+                    <svg enable-background="new 0 0 50 50" height="20px" id="Layer_1" version="1.1" viewBox="0 0 50 50" width="20px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><rect fill="none" height="50" width="50"/><line fill="none" stroke="blue" stroke-miterlimit="10" stroke-width="4" x1="9" x2="41" y1="25" y2="25"/><line fill="none" stroke="blue" stroke-miterlimit="10" stroke-width="4" x1="25" x2="25" y1="9" y2="41"/></svg>
+                        Create
+                    </div>
+                    <div>
+                        <button className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded-full transition-colors delay-150'>Log In</button>
+                    </div>
                 </div>
             </div>
         </div>
