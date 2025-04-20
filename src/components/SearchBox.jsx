@@ -28,7 +28,7 @@ export function SearchBox(){
         <div className='flex justify-center items-center flex-col'>
             <div className="relative w-150">
                 <div 
-                    className="flex items-center h-10 rounded-lg bg-gray-100 px-2 mb-2"
+                    className="flex items-center h-11 rounded-lg bg-gray-100 px-4 mb-2 mt-2"
                     ref={searchBoxRef}
                     onFocus={()=>(searchBoxRef.current.style.border='2px solid blue')}
                     onBlur={()=>{{searchBoxRef.current.style.border=''}}}
@@ -62,7 +62,7 @@ export function SearchBox(){
                             onClick={()=>{
                                 setShowsearchResults(false);
                                 setShowCloseSearch(false)
-                                
+
                             }}
                         >
                             <svg width="20" height="20" viewBox="0 0 100 100"  xmlns="http://www.w3.org/2000/svg">
